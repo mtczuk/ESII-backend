@@ -23,5 +23,8 @@
     "express-session": "^1.16.2",
     "morgan": "^1.9.1",
     "sequelize": "^5.18.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0"
   }
 }
