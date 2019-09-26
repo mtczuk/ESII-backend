@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,12 +22,16 @@
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "mariadb": "^2.1.1",
     "morgan": "^1.9.1",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^5.18.4"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "sequelize-cli": "^5.5.1"
   }
 }
