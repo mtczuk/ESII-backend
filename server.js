@@ -7,11 +7,7 @@ const pg = require('pg');
 
 pg.defaults.ssl = true;
 
-const { User } = require('./src/models');
-const { Interest } = require('./src/models');
-
-User.sync();
-Interest.sync();
+const { User, Interest } = require('./src/models');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -31,3 +27,20 @@ app.use('/api', require('./src/routes'));
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
+
+Interest.create({ name: 'Costura' })
+  .then(novo_interesse => {
+    User.create({
+      name: 'Vitor',
+      email: 'vitorapoli@gmail.com',
+      password: '123'
+    })
+    .then(novo_usuario => {
+      novo_usuario.addInterest(novo_interesse)
+    })
+  })
+
+
+.then(user => {
+  
+})
