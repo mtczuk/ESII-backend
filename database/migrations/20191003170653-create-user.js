@@ -1,60 +1,60 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('usuarios', {
+    return queryInterface.createTable('user', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
-      nome: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       email: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      phone: {
         type: Sequelize.STRING
       },
-      senha: {
+      radius: {
+        type: Sequelize.INTEGER
+      },
+      street: {
         type: Sequelize.STRING
       },
-      distanciaMaxima: {
+      number_home: {
         type: Sequelize.INTEGER
       },
-      valorMaximo: {
-        type: Sequelize.INTEGER
-      },
-      recomendacoes: {
-        type: Sequelize.INTEGER
-      },
-      cep: {
-        type: Sequelize.INTEGER
-      },
-      rua: {
+      complement: {
         type: Sequelize.STRING
       },
-      numero: {
-        type: Sequelize.INTEGER
-      },
-      bairro: {
+      neighbourhood: {
         type: Sequelize.STRING
       },
-      cidade: {
+      city: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      postal_code: {
+        type: Sequelize.STRING
+      },
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('usuarios');
+    return queryInterface.dropTable('user');
   }
 };
