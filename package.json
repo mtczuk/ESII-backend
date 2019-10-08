@@ -20,9 +20,9 @@
   "homepage": "https://github.com/MacPardo/ESII-backend#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.1.1",
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
