@@ -11,7 +11,8 @@ const routes = require('./src/routes');
 const { User, Interest } = require('./src/models');
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8890;
+
 
 app.use(express.json());
 
@@ -23,23 +24,10 @@ app.get('/', (request, response) => {
 });
 
 // quaquer rota que inicie com /api, é redirecionada p/ routes
-console.log('ROUTES: ', routes);
+//  console.log('ROUTES: ', routes);
 
 app.use('/api', routes);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
-
-Interest.create({ name: 'Costura' })
-  .then((novoInteresse) => {
-    User.create({
-      name: 'Vitor',
-      email: 'vitorapoli@gmail.com',
-      password: '123',
-    }).then((novoUsuario) => {
-      novoUsuario.addInterest(novoInteresse);
-    });
-  }).then((user) => {
-    console.log(user);
-  });

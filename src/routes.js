@@ -9,9 +9,11 @@ routes.get('/', (req, res) => {
 });
 
 // CRUD for Users
+routes.get('/user', userController.view);
 routes.get('/user/:id', userController.viewID);
 routes.post('/user', userController.create);
-// routes.put('/user/:id', userController.update);
+routes.put('/user/:id', userController.update);
+routes.delete('/user/:id', userController.delete);
 
 // CRUD for Interest
 // routes.get('/interest', interestController.view);
