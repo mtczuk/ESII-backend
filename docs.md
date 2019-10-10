@@ -27,7 +27,7 @@ INTEREST = {
 ### ROUTES
 
 ```
-GET /user/:id?token=xx
+GET /user/:id
 
 Response:
 {
