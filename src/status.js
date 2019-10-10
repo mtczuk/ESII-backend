@@ -7,8 +7,8 @@ const status = {
     name: 'CREATED',
     http: 201,
   },
-  WRONG_EMAIL: {
-    name: 'WRONG_EMAIL',
+  USER_DOES_NOT_EXIST: {
+    name: 'USER_DOES_NOT_EXIST',
     http: 401,
   },
   WRONG_PASSWORD: {

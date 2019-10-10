@@ -113,7 +113,7 @@ Response:
 |---|---|
 |OK | 200 |
 | CREATED | 201 |
-| WRONG_EMAIL | 401 |
+| USER_DOES_NOT_EXIST | 401 |
 | WRONG_PASSWORD | 401 |
 | INVALID_TOKEN | 401 |
 | FORBIDDEN | 403 |
