@@ -1,35 +1,35 @@
 const status = {
   OK: {
-    name: 'OK',
-    http: 200,
+    apiStatus: 'OK',
+    httpStatus: 200,
   },
   CREATED: {
-    name: 'CREATED',
-    http: 201,
+    apiStatus: 'CREATED',
+    httpStatus: 201,
   },
   USER_DOES_NOT_EXIST: {
-    name: 'USER_DOES_NOT_EXIST',
-    http: 401,
+    apiStatus: 'USER_DOES_NOT_EXIST',
+    httpStatus: 401,
   },
   WRONG_PASSWORD: {
-    name: 'WRONG_PASSWORD',
-    http: 401,
+    apiStatus: 'WRONG_PASSWORD',
+    httpStatus: 401,
   },
   INVALID_TOKEN: {
-    name: 'INVALID_TOKEN',
-    http: 401,
+    apiStatus: 'INVALID_TOKEN',
+    httpStatus: 401,
   },
   FORBIDDEN: {
-    name: 'FORBIDDEN',
-    http: 403,
+    apiStatus: 'FORBIDDEN',
+    httpStatus: 403,
   },
   NOT_FOUND: {
-    name: 'NOT_FOUND',
-    http: 404,
+    apiStatus: 'NOT_FOUND',
+    httpStatus: 404,
   },
   SERVER_ERROR: {
-    name: 'SERVER_ERROR',
-    http: 500,
+    apiStatus: 'SERVER_ERROR',
+    httpStatus: 500,
   },
 };
 
