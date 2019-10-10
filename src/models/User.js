@@ -1,4 +1,3 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     name: DataTypes.STRING,
@@ -11,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     complement: DataTypes.STRING,
     neighbourhood: DataTypes.STRING,
     city: DataTypes.STRING,
-    postal_code: DataTypes.STRING
+    postal_code: DataTypes.STRING,
   }, {
     underscored: true,
-    tableName: 'user'
+    tableName: 'user',
   });
-  User.associate = function(models) {
-    User.belongsToMany(models.Interest, {as: 'interest', through: 'user_interest', foreignKey: 'user_id'})
+  User.associate = (models) => {
+    User.belongsToMany(models.Interest, { as: 'interest', through: 'user_interest', foreignKey: 'user_id' });
   };
   return User;
 };
