@@ -29,18 +29,14 @@ app.listen(port, () => {
 });
 
 Interest.create({ name: 'Costura' })
-  .then(novo_interesse => {
+  .then((novoInteresse) => {
     User.create({
       name: 'Vitor',
       email: 'vitorapoli@gmail.com',
-      password: '123'
-    })
-    .then(novo_usuario => {
-      novo_usuario.addInterest(novo_interesse)
-    })
-  })
-
-
-.then(user => {
-  
-})
+      password: '123',
+    }).then((novoUsuario) => {
+      novoUsuario.addInterest(novoInteresse);
+    });
+  }).then((user) => {
+    console.log(user);
+  });
