@@ -46,7 +46,14 @@ const protectRoute = (req, res, next) => {
   }
 };
 
+const generateToken = (id) => jwt.sign(
+  { id },
+  secret,
+  { expiresIn: 86400 },
+);
+
 module.exports = {
   auth,
   protectRoute,
+  generateToken,
 };
