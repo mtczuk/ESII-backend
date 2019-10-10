@@ -1,9 +1,10 @@
 const express = require('express');
+const pg = require('pg');
+const routes = require('./src/routes');
+
 // const cors = require('cors')
 
 // pra funcionar a conexão com o bd ativar ssl
-
-const pg = require('pg');
 
 pg.defaults.ssl = true;
 
@@ -22,7 +23,9 @@ app.get('/', (request, response) => {
 });
 
 // quaquer rota que inicie com /api, é redirecionada p/ routes
-app.use('/api', require('./src/routes'));
+console.log('ROUTES: ', routes);
+
+app.use('/api', routes);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
