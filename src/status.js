@@ -23,6 +23,10 @@ const status = {
     apiStatus: 'FORBIDDEN',
     httpStatus: 403,
   },
+  INVALID_ROUTE: {
+    apiStatus: 'INVALID_ROUTE',
+    httpStatus: 404,
+  },
   NOT_FOUND: {
     apiStatus: 'NOT_FOUND',
     httpStatus: 404,
