@@ -1,6 +1,29 @@
-const status = require('./status');
+const jwt = require('jsonwebtoken');
+const { status, sendError } = require('./status');
+const User = require('./models/User');
 
-// const secret = 'testsecret'; // must be changed to process.env.SECRET later
+const secret = 'testsecret'; // must be changed to process.env.SECRET later
+
+/**
+ * MIDDLEWARE
+ * if a token was sent, tries to validate it
+ */
+const auth = async (req, res, next) => {
+  const { token } = req.body;
+
+  if (!token) {
+    next();
+  }
+
+  let data;
+  try {
+    data = jwt.verify(token, secret);
+  } catch (e) {
+    sendError(res, status.SERVER_ERROR);
+  }
+
+  const user = User.findOne({ where: { id: data.id } });
+};
 
 /**
  * MIDDLEWARE
@@ -19,5 +42,6 @@ const protectRoute = (req, res, next) => {
 };
 
 module.exports = {
+  auth,
   protectRoute,
 };
