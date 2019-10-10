@@ -33,4 +33,14 @@ const status = {
   },
 };
 
-module.exports = status;
+const sendError = (res, error) => {
+  res.status(error.httpStatus).send({
+    apiStatus: error.apiStatus,
+    httpStatus: error.httpStatus,
+  });
+};
+
+module.exports = {
+  status,
+  sendError,
+};
