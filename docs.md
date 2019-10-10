@@ -1,5 +1,9 @@
 # Especificação da API
 
+A autenticação funciona com Json Web Tokens.
+
+**Sempre que a autenticação for necessária o token deve ser enviado no header Authentication**
+
 ### ALIASES
 ```
 USER = {
@@ -72,7 +76,6 @@ PUT /user
 
 Req body:
 {
-  token: String,
   ...USER,
   // pode colocar só as propriedades que devem ser alteradas    
 }
@@ -85,7 +88,7 @@ Response:
 ```
 
 ```
-GET /interest?token=xx&page=xx&per_page=xx
+GET /interest?page=xx&per_page=xx
 
 Response:
 {
@@ -96,7 +99,7 @@ Response:
 ```
 
 ```
-GET /interest/:id?token=xx
+GET /interest/:id
 
 Response:
 {
@@ -111,7 +114,7 @@ Response:
 
 | App Status | Http Status |
 |---|---|
-|OK | 200 |
+| OK | 200 |
 | CREATED | 201 |
 | USER_DOES_NOT_EXIST | 401 |
 | WRONG_PASSWORD | 401 |
