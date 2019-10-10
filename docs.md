@@ -35,6 +35,8 @@ Response:
   httpStatus: Number,
   apiStatus: String,
 }
+
+Needs authentication: YES
 ```
 
 ```
@@ -52,6 +54,8 @@ Response:
   httpStatus: Number,
   apiStatus: String,
 }
+
+Needs authentication: NO
 ```
 
 ```
@@ -69,6 +73,8 @@ Response:
   httpStatus: Number,
   apiStatus: String,
 }
+
+Needs authentication: NO
 ```
 
 ```
@@ -85,6 +91,8 @@ Response:
   httpStatus: Number,
   apiStatus: String,
 }
+
+Needs authentication: YES
 ```
 
 ```
@@ -96,6 +104,8 @@ Response:
   httpStatus: Number,
   apiStatus: String
 }
+
+Needs authentication: NO
 ```
 
 ```
@@ -108,6 +118,7 @@ Response:
   apiStatus: String
 }
 
+Needs authentication: NO
 ```
 
 ### APPLICATION STATUS
