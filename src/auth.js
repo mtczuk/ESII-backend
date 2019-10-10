@@ -9,7 +9,7 @@ const secret = 'testsecret'; // must be changed to process.env.SECRET later
  * if a token was sent, tries to validate it
  */
 const auth = async (req, res, next) => {
-  const { token } = req.body;
+  const { token } = req.headers.authorization;
 
   if (!token) {
     next();
@@ -19,10 +19,15 @@ const auth = async (req, res, next) => {
   try {
     data = jwt.verify(token, secret);
   } catch (e) {
-    sendError(res, status.SERVER_ERROR);
+    sendError(res, status.INVALID_TOKEN);
   }
 
-  const user = User.findOne({ where: { id: data.id } });
+  try {
+    const user = await User.findOne({ where: { id: data.id } });
+    req.user = user;
+  } catch (e) {
+    sendError(res, status.INVALID_TOKEN);
+  }
 };
 
 /**
