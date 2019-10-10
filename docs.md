@@ -29,7 +29,7 @@ Response:
 {
   ...USER,
   httpStatus: Number,
-  appStatus: String,
+  apiStatus: String,
 }
 ```
 
@@ -46,7 +46,7 @@ Response:
 {
   token: String
   httpStatus: Number,
-  appStatus: String,
+  apiStatus: String,
 }
 ```
 
@@ -63,7 +63,7 @@ Response:
 {
   token: String
   httpStatus: Number,
-  appStatus: String,
+  apiStatus: String,
 }
 ```
 
@@ -80,7 +80,7 @@ Req body:
 Response:
 {
   httpStatus: Number,
-  appStatus: String,
+  apiStatus: String,
 }
 ```
 
@@ -91,7 +91,7 @@ Response:
 {
   interests: [INTEREST],
   httpStatus: Number,
-  appStatus: String
+  apiStatus: String
 }
 ```
 
@@ -102,7 +102,7 @@ Response:
 {
   ...INTEREST,
   httpStatus: Number,
-  appStatus: String
+  apiStatus: String
 }
 
 ```
