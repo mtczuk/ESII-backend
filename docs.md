@@ -28,7 +28,7 @@ GET /user/:id?token=xx
 Response:
 {
   ...USER,
-  httpStatus: Number
+  httpStatus: Number,
   appStatus: String,
 }
 ```
