@@ -1,12 +1,12 @@
 const express = require('express');
-const pg = require('pg');
+// const pg = require('pg');
 const routes = require('./src/routes');
 
 // const cors = require('cors')
 
 // pra funcionar a conexão com o bd ativar ssl
 
-pg.defaults.ssl = true;
+// pg.defaults.ssl = true;
 
 const { User, Interest } = require('./src/models');
 
