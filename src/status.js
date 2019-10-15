@@ -7,6 +7,10 @@ const status = {
     apiStatus: 'CREATED',
     httpStatus: 201,
   },
+  BAD_REQUEST: {
+    apiStatus: 'BAD_REQUEST',
+    httpStatus: 400,
+  },
   USER_DOES_NOT_EXIST: {
     apiStatus: 'USER_DOES_NOT_EXIST',
     httpStatus: 401,
