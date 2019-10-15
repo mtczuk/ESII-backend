@@ -14,9 +14,9 @@ const tokenVerification = async (request, response, next) => {
   if (!authHeader) {
     return sendError(response, status.INVALID_TOKEN);
   }
-  
-  const [scheme, token] = authHeader.split(" ");
-  
+
+  const [token] = authHeader.split(' ');
+
   let data;
   try {
     data = jwt.verify(token, secret);
@@ -32,9 +32,10 @@ const tokenVerification = async (request, response, next) => {
   }
 
   next();
+  return true;
 };
 
 
 module.exports = {
-  tokenVerification
+  tokenVerification,
 };
