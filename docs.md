@@ -83,7 +83,6 @@ PUT /user
 Req body:
 {
   ...USER,
-  // pode colocar só as propriedades que devem ser alteradas    
 }
 
 Response:
