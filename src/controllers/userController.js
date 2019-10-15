@@ -1,4 +1,8 @@
 const { User } = require('../models');
+const { status, sendError } = require('../status');
+
+const secret = 'testsecret'; // must be changed to process.env.SECRET later
+const generateToken = (id) => jwt.sign({ id }, secret);
 
 module.exports = {
   async view(request, response) {
@@ -16,8 +20,18 @@ module.exports = {
   async create(request, response) {
     const user = request.body;
 
-    const userCreate = await User.create(user);
-    return response.sendStatus(201).json(userCreate);
+    console.log('user create');
+
+    try {
+      const userCreate = await User.create(user);
+      console.log('userCreate', userCreate);
+      return response.sendStatus(
+        status.CREATED.httpStatus,
+      ).json(userCreate); // TODO: change this response
+    } catch (e) {
+      console.log(e);
+      return sendError(response, status.BAD_REQUEST); // for now assume it's always bad request
+    }
   },
 
   async update(request, response) {
