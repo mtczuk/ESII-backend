@@ -7,9 +7,10 @@ const authenticationController = require('./controllers/authenticationController
 // const interestController = require('./controllers/interestController.js');
 
 
+routes.post('/user', userController.create);
 routes.post('/authenticate', authenticationController.authenticate);
 
-routes.use(authMiddleware.tokenVerification);
+// routes.use(authMiddleware.tokenVerification); all routes get protected that way
 
 routes.get('/', (req, res) => {
   res.send('testando');
@@ -18,7 +19,6 @@ routes.get('/', (req, res) => {
 // CRUD for Users
 routes.get('/user', userController.view);
 routes.get('/user/:id', userController.viewID);
-routes.post('/user', userController.create);
 routes.put('/user/:id', userController.update);
 routes.delete('/user/:id', userController.delete);
 
