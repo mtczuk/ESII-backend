@@ -5,6 +5,19 @@ const { status, sendError } = require('../status');
 const secret = 'testsecret'; // must be changed to process.env.SECRET later
 const generateToken = (id) => jwt.sign({ id }, secret);
 
+const userFields = (user) => ({
+  name: user.name,
+  email: user.email,
+  phone: user.phone,
+  radius: user.radius,
+  street: user.street,
+  number_home: user.number_home,
+  complement: user.complement,
+  neighbourhood: user.neighbourhood,
+  city: user.city,
+  postal_code: user.postal_code,
+});
+
 module.exports = {
   async view(request, response) {
     const users = await User.findAll();
@@ -45,38 +58,11 @@ module.exports = {
 
   async update(request, response) {
     const { id } = request.params;
-    const {
-      name,
-      email,
-      password,
-      phone,
-      radius,
-      street,
-      // eslint-disable-next-line camelcase
-      number_home,
-      complement,
-      neighbourhood,
-      city,
-      // eslint-disable-next-line camelcase
-      postal_code,
-    } = request.body;
-
+    const fields = userFields(request.body);
     const user = await User.findOne({ where: { id } });
 
     try {
-      user.update({
-        name,
-        email,
-        password,
-        phone,
-        radius,
-        street,
-        number_home,
-        complement,
-        neighbourhood,
-        city,
-        postal_code,
-      });
+      user.update(fields);
 
       const { httpStatus, apiStatus } = status.CREATED;
       return response.status(httpStatus).send({
