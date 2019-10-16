@@ -63,21 +63,29 @@ module.exports = {
 
     const user = await User.findOne({ where: { id } });
 
-    user.update({
-      name,
-      email,
-      password,
-      phone,
-      radius,
-      street,
-      number_home,
-      complement,
-      neighbourhood,
-      city,
-      postal_code,
-    });
+    try {
+      user.update({
+        name,
+        email,
+        password,
+        phone,
+        radius,
+        street,
+        number_home,
+        complement,
+        neighbourhood,
+        city,
+        postal_code,
+      });
 
-    response.json(user);
+      const { httpStatus, apiStatus } = status.CREATED;
+      return response.status(httpStatus).send({
+        httpStatus,
+        apiStatus,
+      });
+    } catch (e) {
+      return sendError(response, status.BAD_REQUEST);
+    }
   },
 
   async delete(request, response) {
