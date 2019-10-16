@@ -31,8 +31,7 @@ const tokenVerification = async (request, response, next) => {
     return sendError(response, status.USER_DOES_NOT_EXIST);
   }
 
-  next();
-  return true;
+  return next();
 };
 
 
