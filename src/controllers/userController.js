@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 const { status, sendError } = require('../status');
 
@@ -25,9 +26,17 @@ module.exports = {
     try {
       const userCreate = await User.create(user);
       console.log('userCreate', userCreate);
-      return response.sendStatus(
-        status.CREATED.httpStatus,
-      ).json(userCreate); // TODO: change this response
+      console.log('my id is', userCreate.dataValues.id);
+
+      const { id } = userCreate.dataValues;
+      const { apiStatus, httpStatus } = status.CREATED;
+      const token = generateToken(id);
+
+      return response.status(httpStatus).send({
+        httpStatus,
+        apiStatus,
+        token,
+      }); // TODO: change this response
     } catch (e) {
       console.log(e);
       return sendError(response, status.BAD_REQUEST); // for now assume it's always bad request
@@ -43,13 +52,17 @@ module.exports = {
       phone,
       radius,
       street,
+      // eslint-disable-next-line camelcase
       number_home,
       complement,
       neighbourhood,
       city,
+      // eslint-disable-next-line camelcase
       postal_code,
     } = request.body;
+
     const user = await User.findOne({ where: { id } });
+
     user.update({
       name,
       email,
@@ -66,6 +79,7 @@ module.exports = {
 
     response.json(user);
   },
+
   async delete(request, response) {
     const { id } = request.params;
     await User.destroy({ where: { id } });
