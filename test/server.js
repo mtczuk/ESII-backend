@@ -19,3 +19,16 @@ it('invalid route', (done) => {
     done();
   });
 });
+
+it('correct route with wrong method', (done) => {
+  request.post(`${baseUrl}/user/3`, (err, res, body) => {
+    const { httpStatus, apiStatus } = status.INVALID_ROUTE;
+    const bodyObj = JSON.parse(body);
+
+    expect(res.statusCode).to.equal(httpStatus);
+    expect(bodyObj.httpStatus).to.equal(httpStatus);
+    expect(bodyObj.apiStatus).to.equal(apiStatus);
+
+    done();
+  });
+});
