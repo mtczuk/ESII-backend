@@ -1,7 +1,7 @@
 const express = require('express');
 
 const routes = express.Router();
-// const authMiddleware = require('./middlewares/auth.js');
+const authMiddleware = require('./middlewares/auth');
 const userController = require('./controllers/userController.js');
 const authenticationController = require('./controllers/authenticationController');
 // const interestController = require('./controllers/interestController.js');
@@ -10,10 +10,11 @@ const authenticationController = require('./controllers/authenticationController
 routes.post('/user', userController.create);
 routes.post('/authenticate', authenticationController.authenticate);
 
-// routes.use(authMiddleware.tokenVerification); all routes get protected that way
+routes.use(authMiddleware);
 
 routes.get('/', (req, res) => {
-  res.send('testando');
+  const { user } = req;
+  res.json({ info: 'Autorizado, você acessou /api', user });
 });
 
 // CRUD for Users
