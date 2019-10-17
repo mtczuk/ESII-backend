@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
@@ -31,10 +31,14 @@
     "sequelize": "^5.18.4"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.1",
+    "mocha-http": "^0.2.5",
     "nodemon": "^1.19.3",
+    "request": "^2.88.0",
     "sequelize-cli": "^5.5.1"
   }
 }
