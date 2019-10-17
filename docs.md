@@ -2,7 +2,14 @@
 
 A autenticação funciona com Json Web Tokens.
 
-**Sempre que a autenticação for necessária o token deve ser enviado no header Authentication**
+**Sempre que a autenticação for necessária o token deve ser enviado no header Authorization da requisição desta forma:**
+
+```sh
+Authorization: Bearer <token>
+```
+
+Para etender melhor o fluxo de autenticação utilizando jwt: 
+https://medium.com/tableless/entendendo-tokens-jwt-json-web-token-413c6d1397f6 
 
 ### ALIASES
 ```
@@ -36,7 +43,7 @@ Response:
   apiStatus: String,
 }
 
-Needs authentication: YES
+Needs authorization: YES
 ```
 
 ```
@@ -55,7 +62,7 @@ Response:
   apiStatus: String,
 }
 
-Needs authentication: NO
+Needs authorization: NO
 ```
 
 ```
@@ -74,7 +81,7 @@ Response:
   apiStatus: String,
 }
 
-Needs authentication: NO
+Needs authorization: NO
 ```
 
 ```
@@ -91,9 +98,9 @@ Response:
   apiStatus: String,
 }
 
-Needs authentication: YES
+Needs authorization: YES
 ```
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNT
 ```
 GET /interest?page=xx&per_page=xx
 
@@ -104,7 +111,7 @@ Response:
   apiStatus: String
 }
 
-Needs authentication: NO
+Needs authorization: NO
 ```
 
 ```
@@ -117,7 +124,7 @@ Response:
   apiStatus: String
 }
 
-Needs authentication: NO
+Needs authorization: NO
 ```
 
 ### APPLICATION STATUS
