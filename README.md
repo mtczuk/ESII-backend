@@ -26,7 +26,10 @@ $ npx sequelize db:create
  ```sh
 $ npx sequelize db:migrate
 ```
-Estes comandos devem criar o banco e migrar a estrutura dele, respectivamente
+```sh
+$ npx sequelize db:seed:all
+```
+Estes comandos devem criar o banco, migrar a estrutura e popular com dados, respectivamente
 
 **5. Executando a api (dev)**
 Na pasta raíz do projeto, execute o comando:
