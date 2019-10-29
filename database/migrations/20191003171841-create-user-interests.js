@@ -9,7 +9,7 @@ module.exports = {
         references: {
           model: {
             schema: 'public',
-            tableName: 'user'
+            tableName: 'users'
           },
           key: 'id'
         }
