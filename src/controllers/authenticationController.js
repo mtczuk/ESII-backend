@@ -17,7 +17,7 @@ module.exports = {
 
       const { id } = user;
 
-      const token = await jwt.sign({ id }, secret);
+      const token = jwt.sign({ id }, secret);
 
       return response.json({
         user,
