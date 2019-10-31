@@ -6,53 +6,53 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       phone: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       radius: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       street: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       number_home: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       complement: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       neighbourhood: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       postal_code: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
