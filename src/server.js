@@ -1,7 +1,7 @@
 const express = require('express');
 // const pg = require('pg');
-const routes = require('./src/routes');
-const { status, sendError } = require('./src/status');
+const routes = require('./routes');
+const { status, sendError } = require('./status');
 
 const app = express();
 const port = process.env.PORT || 8080;
