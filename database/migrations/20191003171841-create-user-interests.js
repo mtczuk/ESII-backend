@@ -9,10 +9,10 @@ module.exports = {
         references: {
           model: {
             schema: 'public',
-            tableName: 'users'
+            tableName: 'users',
           },
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       interest_id: {
         allowNull: false,
@@ -21,22 +21,22 @@ module.exports = {
         references: {
           model: {
             schema: 'public',
-            tableName: 'interest'
+            tableName: 'interest',
           },
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('user_interest');
-  }
+  },
 };

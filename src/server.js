@@ -1,7 +1,7 @@
 const express = require('express');
 // const pg = require('pg');
-const routes = require('./src/routes');
-const { status, sendError } = require('./src/status');
+const routes = require('./routes');
+const { status, sendError } = require('./status');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -18,6 +18,4 @@ app.use('*', (req, res) => {
   sendError(res, status.INVALID_ROUTE);
 });
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
-});
+app.listen(port);

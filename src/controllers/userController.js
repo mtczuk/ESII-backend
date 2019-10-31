@@ -34,12 +34,8 @@ module.exports = {
   async create(request, response) {
     const user = request.body;
 
-    console.log('user create');
-
     try {
       const userCreate = await User.create(user);
-      console.log('userCreate', userCreate);
-      console.log('my id is', userCreate.dataValues.id);
 
       const { id } = userCreate.dataValues;
       const { apiStatus, httpStatus } = status.CREATED;
@@ -51,7 +47,6 @@ module.exports = {
         token,
       }); // TODO: change this response
     } catch (e) {
-      console.log(e);
       return sendError(response, status.BAD_REQUEST); // for now assume it's always bad request
     }
   },
