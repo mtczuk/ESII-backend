@@ -18,6 +18,4 @@ app.use('*', (req, res) => {
   sendError(res, status.INVALID_ROUTE);
 });
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
-});
+app.listen(port);
