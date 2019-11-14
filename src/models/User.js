@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     postal_code: DataTypes.STRING,
   }, {
     underscored: true,
-    tableName: 'user',
+    tableName: 'users',
   });
   User.associate = (models) => {
     User.belongsToMany(models.Interest, { as: 'interest', through: 'user_interest', foreignKey: 'user_id' });

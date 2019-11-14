@@ -47,6 +47,7 @@ module.exports = {
         token,
       }); // TODO: change this response
     } catch (e) {
+      console.log(e);
       return sendError(response, status.BAD_REQUEST); // for now assume it's always bad request
     }
   },

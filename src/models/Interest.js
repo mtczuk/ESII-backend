@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'interest',
   });
   Interest.associate = (models) => {
-    Interest.belongsToMany(models.User, { as: 'user', through: 'user_interest', foreignKey: 'interest_id' });
+    Interest.belongsToMany(models.User, { as: 'users', through: 'user_interest', foreignKey: 'interest_id' });
   };
   return Interest;
 };
