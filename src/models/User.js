@@ -15,8 +15,5 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
     tableName: 'users',
   });
-  User.associate = (models) => {
-    User.belongsToMany(models.Interest, { as: 'interest', through: 'user_interest', foreignKey: 'user_id' });
-  };
   return User;
 };
