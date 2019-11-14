@@ -23,12 +23,6 @@ USER = {
   complement: String,
   neighbourhood: String,
 }
-
-INTEREST = {
-  name: String,
-  description: String,
-  image_path: String,
-}
 ```
 
 ### ROUTES
@@ -103,30 +97,6 @@ Response:
 Needs authorization: YES
 ```
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNT
-```
-GET /interest?page=xx&per_page=xx
-
-Response:
-{
-  interests: [INTEREST],
-  httpStatus: Number,
-  apiStatus: String
-}
-
-Needs authorization: NO
-```
-
-```
-GET /interest/:id
-
-Response:
-{
-  ...INTEREST,
-  httpStatus: Number,
-  apiStatus: String
-}
-
-Needs authorization: NO
 ```
 
 ### APPLICATION STATUS
