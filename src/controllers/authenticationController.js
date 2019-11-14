@@ -22,6 +22,7 @@ module.exports = {
       return response.json({
         user,
         token,
+        id,
       });
     } catch (err) {
       return sendError(response, status.WRONG_PASSWORD);

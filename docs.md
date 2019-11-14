@@ -60,13 +60,14 @@ Response:
   token: String
   httpStatus: Number,
   apiStatus: String,
+  id: Number,
 }
 
 Needs authorization: NO
 ```
 
 ```
-POST /user/login
+POST /authenticate
 
 Req body:
 {
@@ -79,6 +80,7 @@ Response:
   token: String
   httpStatus: Number,
   apiStatus: String,
+  id: Number,
 }
 
 Needs authorization: NO
