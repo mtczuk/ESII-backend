@@ -20,16 +20,26 @@ Certifique-se que usuário, senha, host e porta são configuradas de acordo com 
 
 **4. Criando o banco**
 Na pasta raíz do projeto, e com o postgres rodando, execute os comandos:
- ```sh
+Instalar npx:
+```sh
+$ npm install -g npx
+```
+Criar o banco de dados:
+```sh
 $ npx sequelize db:create
 ```
+Migrar as tabelas:
  ```sh
 $ npx sequelize db:migrate
 ```
+Popular as tabelas:
 ```sh
 $ npx sequelize db:seed:all
 ```
-Estes comandos devem criar o banco, migrar a estrutura e popular com dados, respectivamente
+Voltar aos dados:
+```sh
+$ npx sequelize db:seed:undo
+```
 
 **5. Executando a api (dev)**
 Na pasta raíz do projeto, execute o comando:
