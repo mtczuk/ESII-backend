@@ -67,7 +67,7 @@ Needs authorization: NO
 ```
 
 ```
-POST /user/login
+POST /authenticate
 
 Req body:
 {
