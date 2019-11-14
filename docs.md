@@ -60,6 +60,7 @@ Response:
   token: String
   httpStatus: Number,
   apiStatus: String,
+  id: Number,
 }
 
 Needs authorization: NO
@@ -79,6 +80,7 @@ Response:
   token: String
   httpStatus: Number,
   apiStatus: String,
+  id: Number,
 }
 
 Needs authorization: NO

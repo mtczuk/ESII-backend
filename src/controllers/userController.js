@@ -45,6 +45,7 @@ module.exports = {
         httpStatus,
         apiStatus,
         token,
+        id,
       }); // TODO: change this response
     } catch (e) {
       console.log(e);
