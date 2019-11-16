@@ -19,11 +19,6 @@ const userFields = (user) => ({
 });
 
 module.exports = {
-  async view(request, response) {
-    const users = await User.findAll();
-    return response.json(users);
-  },
-
   async viewID(request, response) {
     const { id } = request.params;
     const user = await User.findByPk(id);
