@@ -17,11 +17,13 @@ USER = {
   name: String,
   email: String,
   phone: String,
-  radius: String,
+  radius: Number,
   street: String,
   number_home: Number,
   complement: String,
   neighbourhood: String,
+  city: String,
+  postal_code: String
 }
 ```
 
