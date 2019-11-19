@@ -55,6 +55,11 @@ module.exports = {
 
   async update(request, response) {
     const { id } = request.params;
+
+    if (request.userId !== Number(id)) {
+      return sendError(response, status.FORBIDDEN);
+    }
+
     const fields = userFields(request.body);
     const user = await User.findOne({ where: { id } });
 
@@ -73,8 +78,13 @@ module.exports = {
 
   async delete(request, response) {
     const { id } = request.params;
+
+    if (request.userId !== Number(id)) {
+      return sendError(response, status.FORBIDDEN);
+    }
+
     await User.destroy({ where: { id } });
 
-    response.sendStatus(200);
+    return response.sendStatus(200);
   },
 };
