@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const { status, sendError } = require('../status');
-const { User } = require('../models');
 
 const secret = 'testsecret'; // must be changed to process.env.SECRET later
 
@@ -24,13 +23,8 @@ module.exports = async (request, response, next) => {
     return sendError(response, status.INVALID_TOKEN);
   }
 
-  try {
-    const { id } = data;
-    const user = await User.findByPk(id);
-    request.user = user;
-  } catch (e) {
-    return sendError(response, status.USER_DOES_NOT_EXIST);
-  }
+  const { id } = data;
+  request.userId = id;
 
   return next();
 };

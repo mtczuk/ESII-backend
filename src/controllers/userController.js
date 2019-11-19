@@ -21,8 +21,13 @@ const userFields = (user) => ({
 module.exports = {
   async viewID(request, response) {
     const { id } = request.params;
-    const user = await User.findByPk(id);
 
+    console.log(`id=${id} userId=${request.userId}`);
+
+    if (request.userId !== Number(id)) {
+      return sendError(response, status.FORBIDDEN);
+    }
+    const user = await User.findByPk(id);
     return response.json(user);
   },
 

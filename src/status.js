@@ -41,12 +41,10 @@ const status = {
   },
 };
 
-const sendError = (res, error) => {
-  res.status(error.httpStatus).send({
-    apiStatus: error.apiStatus,
-    httpStatus: error.httpStatus,
-  });
-};
+const sendError = (res, error) => res.status(error.httpStatus).send({
+  apiStatus: error.apiStatus,
+  httpStatus: error.httpStatus,
+});
 
 module.exports = {
   status,
