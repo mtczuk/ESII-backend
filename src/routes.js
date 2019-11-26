@@ -20,7 +20,7 @@ routes.get('/', (req, res) => {
 });
 
 // CRUD for Users
-routes.get('/user/:id', userController.viewID);
+routes.get('/user', userController.viewID);
 routes.put('/user/:id', userController.update);
 routes.delete('/user/:id', userController.delete);
 
