@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MacPardo/ESII-backend#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
