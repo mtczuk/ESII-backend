@@ -11,11 +11,6 @@ routes.post('/authenticate', authenticationController.authenticate);
 
 routes.use(authMiddleware);
 
-routes.get('/', (req, res) => {
-  const { user } = req;
-  res.json({ info: 'Autorizado, você acessou /api', user });
-});
-
 // CRUD for Users
 routes.get('/user', userController.viewID);
 routes.put('/user/:id', userController.update);
