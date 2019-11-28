@@ -13,7 +13,7 @@ routes.use(authMiddleware);
 
 // CRUD for Users
 routes.get('/user', userController.viewID);
-routes.put('/user/:id', userController.update);
-routes.delete('/user/:id', userController.delete);
+routes.put('/user', userController.update);
+routes.delete('/user', userController.delete);
 
 module.exports = routes;
