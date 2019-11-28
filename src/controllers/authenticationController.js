@@ -10,9 +10,6 @@ module.exports = {
     const fbToken = request.headers.fbtoken;
 
     if (fbToken) {
-
-      console.log('got fbtoken', fbToken);
-
       let data;
       try {
         const res = await axios.get('https://graph.facebook.com/v5.0/me', {
