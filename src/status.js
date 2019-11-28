@@ -15,10 +15,6 @@ const status = {
     apiStatus: 'USER_DOES_NOT_EXIST',
     httpStatus: 401,
   },
-  WRONG_PASSWORD: {
-    apiStatus: 'WRONG_PASSWORD',
-    httpStatus: 401,
-  },
   INVALID_TOKEN: {
     apiStatus: 'INVALID_TOKEN',
     httpStatus: 401,
