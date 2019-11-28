@@ -33,16 +33,10 @@ module.exports = {
   },
 
   async update(request, response) {
-    const { id } = request.params;
-
-    if (request.userId !== Number(id)) {
-      return sendError(response, status.FORBIDDEN);
-    }
-
-    const fields = userFields(request.body);
-    const user = await User.findOne({ where: { id } });
-
     try {
+      const fields = userFields(request.body);
+      const user = await User.findOne({ where: { id: request.userId } });
+
       user.update(fields);
 
       const { httpStatus, apiStatus } = status.CREATED;
