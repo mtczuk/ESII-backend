@@ -10,6 +10,9 @@ module.exports = {
     const fbToken = request.headers.fbtoken;
 
     if (fbToken) {
+
+      console.log('got fbtoken', fbToken);
+
       let data;
       try {
         const res = await axios.get('https://graph.facebook.com/v5.0/me', {
@@ -21,6 +24,10 @@ module.exports = {
         data = res.data;
       } catch (e) {
         return sendError(response, status.BAD_REQUEST);
+      }
+
+      if (!data.email) {
+        sendError(response, status.BAD_REQUEST);
       }
 
       let user;
