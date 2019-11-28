@@ -43,6 +43,6 @@ module.exports = {
       return response.json({ token });
     }
 
-    return sendError(response, status.WRONG_PASSWORD);
+    return sendError(response, status.BAD_REQUEST);
   },
 };
