@@ -1,9 +1,5 @@
-const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 const { status, sendError } = require('../status');
-
-const secret = 'testsecret'; // must be changed to process.env.SECRET later
-const generateToken = (id) => jwt.sign({ id }, secret);
 
 const userFields = (user) => ({
   name: user.name,
