@@ -32,28 +32,6 @@ module.exports = {
     }
   },
 
-  async create(request, response) {
-    const user = request.body;
-
-    try {
-      const userCreate = await User.create(user);
-
-      const { id } = userCreate.dataValues;
-      const { apiStatus, httpStatus } = status.CREATED;
-      const token = generateToken(id);
-
-      return response.status(httpStatus).send({
-        httpStatus,
-        apiStatus,
-        token,
-        id,
-      }); // TODO: change this response
-    } catch (e) {
-      console.log(e);
-      return sendError(response, status.BAD_REQUEST); // for now assume it's always bad request
-    }
-  },
-
   async update(request, response) {
     const { id } = request.params;
 
