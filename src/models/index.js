@@ -2,9 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const config = require('../../config/database.js');
+require('dotenv').config();
 
 const db = {};
-const sequelize = new Sequelize(config);
+const sequelize = new Sequelize(process.env.ENV === 'dev' ? config.development : config.production);
 
 fs
   .readdirSync(__dirname)
