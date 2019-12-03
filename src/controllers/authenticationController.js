@@ -23,6 +23,10 @@ module.exports = {
         return sendError(response, status.BAD_REQUEST);
       }
 
+      if (!data.email) {
+        sendError(response, status.BAD_REQUEST);
+      }
+
       let user;
       try {
         user = await User.findOne({ where: { email: data.email } });
@@ -43,6 +47,6 @@ module.exports = {
       return response.json({ token });
     }
 
-    return sendError(response, status.WRONG_PASSWORD);
+    return sendError(response, status.BAD_REQUEST);
   },
 };
