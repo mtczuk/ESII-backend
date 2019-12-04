@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 // const pg = require('pg');
-const routes = require('./routes');
+const routes = require('./router');
 const { status, sendError } = require('./status');
 
 const port = process.env.PORT || 8080;
