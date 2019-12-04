@@ -17,7 +17,7 @@ const userFields = (user) => ({
   postal_code: user.postal_code,
 });
 
-router.get(async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const user = await User.findByPk(req.userId);
 
@@ -30,7 +30,7 @@ router.get(async (req, res) => {
   }
 });
 
-router.put(async (req, res) => {
+router.put('/', async (req, res) => {
   try {
     const fields = userFields(req.body);
     const user = await User.findOne({ where: { id: req.userId } });
@@ -47,7 +47,7 @@ router.put(async (req, res) => {
   }
 });
 
-router.delete(async (request, response) => {
+router.delete('/', async (request, response) => {
   try {
     await User.destroy({ where: { id: request.userId } });
 

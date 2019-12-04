@@ -11,6 +11,6 @@ const userRouter = require('./userRouter');
 routes.post('/authenticate', authenticationController.authenticate);
 
 routes.use(authMiddleware);
-routes.use(userRouter);
+routes.use('/user', userRouter);
 
 module.exports = routes;
