@@ -6,11 +6,16 @@ const request = require('request');
 const axios = require('axios');
 const { status } = require('../src/status');
 const { correctUsers } = require('./dummy');
+require('dotenv').config();
 
 const baseUrl = 'http://127.0.0.1:8080/api';
 const instance = axios.create({
   baseURL: 'http://127.0.0.1:8080/api',
 });
+
+if (process.env.ENV !== 'dev') {
+  process.exit(1);
+}
 
 it('invalid route', (done) => {
   request(`${baseUrl}/llaskjdf`, (err, res, body) => {
