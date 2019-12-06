@@ -6,6 +6,10 @@ const router = express.Router();
 
 const delim = ',';
 
+router.post('/', (req, res) => {
+
+});
+
 router.get('/', async (req, res) => {
   const {
     latitude,
