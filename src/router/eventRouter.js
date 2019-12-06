@@ -1,13 +1,21 @@
 const express = require('express');
 const { Event } = require('../models');
 const { status, sendError } = require('../status');
+const { getCoordinates } = require('../location');
 
 const router = express.Router();
 
 const delim = ',';
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  console.log(req.body);
 
+  const coordinates = await getCoordinates(req.body.address);
+
+  console.log('coordinates:');
+  console.log(coordinates);
+
+  return res.json(coordinates);
 });
 
 router.get('/', async (req, res) => {
