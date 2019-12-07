@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 // configurações do ambiente de desenvolvimento
 module.exports = {
   development: {
-    username: 'postgres',
-    password: 'postgres',
-    database: 'helippa_teste',
+    username: process.env.DB_USERNAME || 'postgres',
+    password: process.env.DB_PASSWORD || 'postgres',
+    database: process.env.DB_NAME || 'helippa_teste',
     host: 'localhost',
     port: 5432,
     dialect: 'postgres',
