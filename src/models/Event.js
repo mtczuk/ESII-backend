@@ -6,5 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     place: DataTypes.STRING,
     picture: DataTypes.STRING,
   }, {});
+
+  Event.associate = (models) => {
+    Event.belongsTo(models.User);
+  };
+
   return Event;
 };

@@ -23,6 +23,12 @@ module.exports = {
       picture: {
         type: Sequelize.STRING
       },
+      latitude: {
+        type: Sequelize.FLOAT
+      },
+      longitude: {
+        type: Sequelize.FLOAT
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

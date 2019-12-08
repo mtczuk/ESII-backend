@@ -11,6 +11,9 @@ const secret = 'testsecret'; // must be changed to process.env.SECRET later
 router.post('/', async (request, response) => {
   const fbToken = request.headers.fbtoken;
 
+  console.log('fbtoken is');
+  console.log(fbToken);
+
   if (fbToken) {
     let data;
     try {
@@ -36,11 +39,13 @@ router.post('/', async (request, response) => {
         user = await User.create({
           name: data.name,
           email: data.email,
-          password: '123',
-          // password está hardcoded pois não consegui remover a coluna nas migrations
         });
       }
     } catch (e) {
+      console.log('SERVER ERROR!!!!');
+      console.log(user);
+      console.log('error is');
+      console.log(e);
       return sendError(response, status.SERVER_ERROR);
     }
 
