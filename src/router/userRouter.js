@@ -1,8 +1,11 @@
 const express = require('express');
 const { User } = require('../models');
 const { status, sendError } = require('../status');
+const auth = require('../middlewares/auth');
 
 const router = express.Router();
+
+router.use(auth);
 
 const userFields = (user) => ({
   name: user.name,
