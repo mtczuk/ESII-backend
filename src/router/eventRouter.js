@@ -3,6 +3,18 @@ const { Event } = require('../models');
 const { status, sendError } = require('../status');
 const { getCoordinates } = require('../location');
 const sequelize = require('sequelize');
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/')
+  }, filename: (req, file, cb) => {
+    cb(null, `${req.params.id}_${new Date().getTime()}${path.extname(file.originalname)}`);
+  },
+});
+
+const upload = multer({ storage });
 
 const router = express.Router();
 
@@ -36,6 +48,12 @@ router.post('/', async (req, res) => {
     // TODO: check if it really was a bad request
     return sendError(res, status.BAD_REQUEST);
   }
+});
+
+router.post('/:id/image', upload.single('image'), async (req, res) => {
+  console.log('files');
+  console.log(req.files);
+  res.send('ok');
 });
 
 router.get('/', async (req, res) => {
