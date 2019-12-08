@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "resetdb": "npx sequelize db:drop; npx sequelize db:create && npx sequelize db:migrate"
   },
   "repository": {
     "type": "git",
