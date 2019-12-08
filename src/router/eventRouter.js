@@ -2,6 +2,7 @@ const express = require('express');
 const { Event } = require('../models');
 const { status, sendError } = require('../status');
 const { getCoordinates } = require('../location');
+const sequelize = require('sequelize');
 
 const router = express.Router();
 
@@ -10,12 +11,31 @@ const delim = ',';
 router.post('/', async (req, res) => {
   console.log(req.body);
 
-  const coordinates = await getCoordinates(req.body.address);
+  const {
+    name,
+    description,
+    date,
+    place,
+  } = req.body;
 
-  console.log('coordinates:');
-  console.log(coordinates);
+  try {
+    const event = await Event.create({
+      name,
+      description,
+      date,
+      place,
+    });
+    console.log('created event is');
+    console.log(event);
 
-  return res.json(coordinates);
+    return res.status(status.CREATED.httpStatus).json({
+      apiStatus: status.CREATED.apiStatus,
+      httpStatus: status.CREATED.httpStatus,
+    });
+  } catch (e) {
+    // TODO: check if it really was a bad request
+    return sendError(res, status.BAD_REQUEST);
+  }
 });
 
 router.get('/', async (req, res) => {
@@ -38,12 +58,24 @@ router.get('/', async (req, res) => {
     filterObj.city = city;
   }
 
-  const events = await Event.findAll();
+  try {
+    const rawEvents = await Event.findAll();
+    const events = rawEvents.map((event) => ({
+      name: event.name,
+      description: event.description,
+      date: event.date,
+      place: event.place,
+      picture: event.picture,
+    }));
 
-  console.log('events are:');
-  console.log(events);
+    console.log('events are:');
+    console.log(events);
 
-  res.json({ ok: true });
+    res.json(events);
+  } catch (e) {
+    // TODO: check if it always is a server error
+    sendError(res, status.SERVER_ERROR);
+  }
 });
 
 module.exports = router;
