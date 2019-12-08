@@ -6,6 +6,8 @@ const sequelize = require('sequelize');
 const multer = require('multer');
 const path = require('path');
 
+const auth = require('../middlewares/auth');
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/')
@@ -19,42 +21,6 @@ const upload = multer({ storage });
 const router = express.Router();
 
 const delim = ',';
-
-router.post('/', async (req, res) => {
-  console.log(req.body);
-
-  const {
-    name,
-    description,
-    date,
-    place,
-  } = req.body;
-
-  try {
-    const event = await Event.create({
-      name,
-      description,
-      date,
-      place,
-    });
-    console.log('created event is');
-    console.log(event);
-
-    return res.status(status.CREATED.httpStatus).json({
-      apiStatus: status.CREATED.apiStatus,
-      httpStatus: status.CREATED.httpStatus,
-    });
-  } catch (e) {
-    // TODO: check if it really was a bad request
-    return sendError(res, status.BAD_REQUEST);
-  }
-});
-
-router.post('/:id/image', upload.single('image'), async (req, res) => {
-  console.log('files');
-  console.log(req.files);
-  res.send('ok');
-});
 
 router.get('/', async (req, res) => {
   const {
@@ -94,6 +60,45 @@ router.get('/', async (req, res) => {
     // TODO: check if it always is a server error
     sendError(res, status.SERVER_ERROR);
   }
+});
+
+router.use(auth);
+
+router.post('/', async (req, res) => {
+  console.log(req.body);
+
+  const {
+    name,
+    description,
+    date,
+    place,
+  } = req.body;
+
+  try {
+    const event = await Event.create({
+      name,
+      description,
+      date,
+      place,
+    });
+    console.log('created event is');
+    console.log(event);
+
+    return res.status(status.CREATED.httpStatus).json({
+      apiStatus: status.CREATED.apiStatus,
+      httpStatus: status.CREATED.httpStatus,
+    });
+  } catch (e) {
+    // TODO: check if it really was a bad request
+    return sendError(res, status.BAD_REQUEST);
+  }
+});
+
+router.post('/:id/image', upload.single('image'), async (req, res) => {
+  console.log(req.userId);
+  console.log('files');
+  console.log(req.files);
+  res.send('ok');
 });
 
 module.exports = router;
