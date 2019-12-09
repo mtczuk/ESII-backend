@@ -5,6 +5,7 @@ const { getCoordinates } = require('../location');
 const sequelize = require('sequelize');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 const auth = require('../middlewares/auth');
 
@@ -106,6 +107,19 @@ router.post('/:id/image', upload.single('image'), async (req, res) => {
   console.log(req.file);
   try {
     const event = await Event.findByPk(req.params.id);
+    const prevImage = event.dataValues.picture;
+    console.log('the previous image was');
+    console.log(prevImage);
+
+    fs.unlink(path.join(__dirname, '..', '..', prevImage), (err) => {
+      if (err) {
+        console.log('file could not be deleted');
+        console.log(err);
+      } else {
+        console.log('file deleted');
+      }
+    });
+
     event.update({picture: req.file.path});
     console.log('event is');
     console.log(event);
@@ -118,6 +132,8 @@ router.post('/:id/image', upload.single('image'), async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
+  console.log('req is');
+  console.log(req);
   res.send('ok');
 });
 
