@@ -9,6 +9,7 @@ module.exports = {
     host: 'localhost',
     port: 5432,
     dialect: 'postgres',
+    timestamps: false,
     define: {
       timestamps: false,
     },
