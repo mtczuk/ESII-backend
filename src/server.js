@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 // const pg = require('pg');
@@ -16,6 +17,7 @@ app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres Helippa API' });
 });
 
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 app.use('/api', routes);
 app.use('*', (req, res) => {
   sendError(res, status.INVALID_ROUTE);
