@@ -58,6 +58,8 @@ router.get('/', async (req, res) => {
     res.json(events);
   } catch (e) {
     // TODO: check if it always is a server error
+    console.log('error was');
+    console.log(e);
     sendError(res, status.SERVER_ERROR);
   }
 });
@@ -66,6 +68,8 @@ router.use(auth);
 
 router.post('/', async (req, res) => {
   console.log(req.body);
+  console.log('current user id is');
+  console.log(req.userId);
 
   const {
     name,
@@ -90,6 +94,8 @@ router.post('/', async (req, res) => {
     });
   } catch (e) {
     // TODO: check if it really was a bad request
+    console.log('error was');
+    console.log(e);
     return sendError(res, status.BAD_REQUEST);
   }
 });
@@ -97,7 +103,21 @@ router.post('/', async (req, res) => {
 router.post('/:id/image', upload.single('image'), async (req, res) => {
   console.log(req.userId);
   console.log('files');
-  console.log(req.files);
+  console.log(req.file);
+  try {
+    const event = await Event.findByPk(req.params.id);
+    event.update({picture: req.file.path});
+    console.log('event is');
+    console.log(event);
+    sendError(res, status.OK);
+  } catch (e) {
+    console.log('error is');
+    console.log(e);
+    sendError(res, status.BAD_REQUEST);
+  }
+});
+
+router.put('/:id', async (req, res) => {
   res.send('ok');
 });
 
