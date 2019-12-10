@@ -25,6 +25,16 @@ USER = {
   city: String,
   postal_code: String
 }
+
+EVENT = {
+  name: String,
+  description: String,
+  date: String,
+  latitude: Number,
+  longitude: Number,
+  city: String,
+  picture: String
+}
 ```
 
 ### ROUTES
@@ -97,6 +107,70 @@ Response:
 }
 
 Needs authorization: YES
+```
+
+```
+GET /event?latitude=xx&longitude=xx&&radius=xxcity=xx&categories=cat1,cat2,cat3
+
+Response:
+{
+  httpStatus: Number,
+  apiStatus: String,
+  events: [EVENT]
+}
+
+os query params ainda não funcionam, mas estão parcialmente codificados
+
+atualmente essa rota apenas retorna todos os eventos
+```
+
+```
+POST /event
+
+Req body:
+{
+  name: String,
+  description: String,
+  date: String,
+  place: String
+}
+
+Response:
+{
+  apiStatus: String,
+  httpStatus: Number,
+  ...EVENT
+}
+```
+
+```
+POST /event/:eventId/image
+
+Essa requisição é feita com FormData, diferentemente das outras, que são com JSON
+
+Req body:
+A imagem vai no campo "image"
+
+Response:
+{
+  apiStatus: Number,
+  httpStatus: String
+}
+```
+
+```
+PUT /event/:eventId
+
+Req body:
+{
+  ...EVENT
+}
+
+Response:
+{
+  apiStatus: Number,
+  httpStatus: String
+}
 ```
 
 ### APPLICATION STATUS
