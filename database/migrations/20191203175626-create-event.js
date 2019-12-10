@@ -23,12 +23,10 @@ module.exports = {
       picture: {
         type: Sequelize.STRING
       },
-      latitude: {
-        type: Sequelize.FLOAT
+      usersId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' }
       },
-      longitude: {
-        type: Sequelize.FLOAT
-      }
     });
   },
   down: (queryInterface, Sequelize) => {

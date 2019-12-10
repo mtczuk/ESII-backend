@@ -23,6 +23,15 @@ const router = express.Router();
 
 const delim = ',';
 
+const eventFields = (event) => ({
+  name: event.name,
+  description: event.description,
+  date: event.date,
+  place: event.place,
+  picture: event.picture || "",
+  id: event.id,
+});
+
 router.get('/', async (req, res) => {
   const {
     latitude,
@@ -45,13 +54,7 @@ router.get('/', async (req, res) => {
 
   try {
     const rawEvents = await Event.findAll();
-    const events = rawEvents.map((event) => ({
-      name: event.name,
-      description: event.description,
-      date: event.date,
-      place: event.place,
-      picture: event.picture,
-    }));
+    const events = rawEvents.map(eventFields);
 
     console.log('events are:');
     console.log(events);
@@ -65,7 +68,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.use(auth);
+// router.use(auth);
 
 router.post('/', async (req, res) => {
   console.log(req.body);
@@ -85,6 +88,7 @@ router.post('/', async (req, res) => {
       description,
       date,
       place,
+      picture: "",
     });
     console.log('created event is');
     console.log(event);
@@ -92,6 +96,7 @@ router.post('/', async (req, res) => {
     return res.status(status.CREATED.httpStatus).json({
       apiStatus: status.CREATED.apiStatus,
       httpStatus: status.CREATED.httpStatus,
+      ...eventFields(event),
     });
   } catch (e) {
     // TODO: check if it really was a bad request
@@ -111,14 +116,16 @@ router.post('/:id/image', upload.single('image'), async (req, res) => {
     console.log('the previous image was');
     console.log(prevImage);
 
-    fs.unlink(path.join(__dirname, '..', '..', prevImage), (err) => {
-      if (err) {
-        console.log('file could not be deleted');
-        console.log(err);
-      } else {
-        console.log('file deleted');
-      }
-    });
+    if (prevImage) {
+      fs.unlink(path.join(__dirname, '..', '..', prevImage), (err) => {
+        if (err) {
+          console.log('file could not be deleted');
+          console.log(err);
+        } else {
+          console.log('file deleted');
+        }
+      });
+    }
 
     event.update({picture: req.file.path});
     console.log('event is');
