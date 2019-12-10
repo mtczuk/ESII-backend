@@ -8,7 +8,7 @@ A autenticação funciona com Json Web Tokens.
 Authorization: Bearer <token>
 ```
 
-Para etender melhor o fluxo de autenticação utilizando jwt: 
+Para entender melhor o fluxo de autenticação utilizando jwt: 
 https://medium.com/tableless/entendendo-tokens-jwt-json-web-token-413c6d1397f6 
 
 ### ALIASES
@@ -39,8 +39,9 @@ EVENT = {
 
 ### ROUTES
 
+Retorna o usuário com base no authentication token
 ```
-GET /user/:id
+GET /user
 
 Response:
 {
@@ -51,6 +52,9 @@ Response:
 
 Needs authorization: YES
 ```
+
+<hr/>
+Insere um usuário
 
 ```
 POST /user
@@ -72,14 +76,15 @@ Response:
 Needs authorization: NO
 ```
 
+<hr/>
+
+Retorna um token da API com base no token do facebook
+
+O token do facebook é passado no campo "fbtoken" do Header
 ```
 POST /authenticate
 
-Req body:
-{
-  email: String,
-  password: String,
-}
+Req body: (string vazia)
 
 Response:
 {
@@ -91,6 +96,10 @@ Response:
 
 Needs authorization: NO
 ```
+
+<hr/>
+
+Altera o usuário que está autenticado. O usuário é identificado através do token 
 
 ```
 PUT /user
@@ -109,8 +118,16 @@ Response:
 Needs authorization: YES
 ```
 
+<hr/>
+
+Retorna uma lista de eventos.
+
+Os query params ainda não funcionam, mas estão parcialmente implementados.
+
+Atualmente apenas retorna uma lista com todos os eventos.
+
 ```
-GET /event?latitude=xx&longitude=xx&&radius=xxcity=xx&categories=cat1,cat2,cat3
+GET /event?page=xx&perPage=xx&latitude=xx&longitude=xx&&radius=xxcity=xx&categories=cat1,cat2,cat3
 
 Response:
 {
@@ -118,11 +135,11 @@ Response:
   apiStatus: String,
   events: [EVENT]
 }
-
-os query params ainda não funcionam, mas estão parcialmente codificados
-
-atualmente essa rota apenas retorna todos os eventos
 ```
+
+<hr/>
+
+Adiciona um evento.
 
 ```
 POST /event
@@ -143,6 +160,12 @@ Response:
 }
 ```
 
+<hr/>
+
+Adiciona a imagem do evento :eventId
+
+A imagem não pode se adicionada juntamente com a requisicao `POST /event` pois imagens não podem ser enviadas por JSON, apenas com FormData.
+
 ```
 POST /event/:eventId/image
 
@@ -157,6 +180,10 @@ Response:
   httpStatus: String
 }
 ```
+
+<hr/>
+
+Altera o evento com id :eventId
 
 ```
 PUT /event/:eventId
@@ -173,17 +200,19 @@ Response:
 }
 ```
 
+<hr/>
+
 ### APPLICATION STATUS
 
-| App Status | Http Status |
-|---|---|
-| OK | 200 |
-| CREATED | 201 |
-| BAD_REQUEST | 400 |
-| USER_DOES_NOT_EXIST | 401 |
-| WRONG_PASSWORD | 401 |
-| INVALID_TOKEN | 401 |
-| FORBIDDEN | 403 |
-| INVALID_ROUTE | 404 |
-| NOT_FOUND | 404 |
-| SERVER_ERROR | 500 |
+| App Status          | Http Status |
+| ------------------- | ----------- |
+| OK                  | 200         |
+| CREATED             | 201         |
+| BAD_REQUEST         | 400         |
+| USER_DOES_NOT_EXIST | 401         |
+| WRONG_PASSWORD      | 401         |
+| INVALID_TOKEN       | 401         |
+| FORBIDDEN           | 403         |
+| INVALID_ROUTE       | 404         |
+| NOT_FOUND           | 404         |
+| SERVER_ERROR        | 500         |
