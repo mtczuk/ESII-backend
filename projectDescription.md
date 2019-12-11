@@ -13,7 +13,7 @@ A pasta `database/` foi gerada pelo Sequelize e contém [migrations](https://seq
 
 A pasta `src/` contém o código do projeto em si.
 
-`src/server.js` é o ponto de entrada que inicia o servidor em si.
+`src/server.js` é o ponto de entrada que incia o processo.
 
 `src/status.js` contém definições de status da API e seus respectivos status HTTP. Também tem uma função utilitária que apenas manda uma resposta com um erro.
 
